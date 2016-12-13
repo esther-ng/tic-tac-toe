@@ -16,7 +16,33 @@ describe('Game', function(){
     });
   });
 
-  describe()
+  describe('Player1', function(){
+    it('should be a Player object', function(){
+      expect(testGame.Player1).toBeTruthy();
+    });
+
+    it('should be able to setName and setMark of Player1', function(){
+      testGame.Player1.setName('Kelly');
+      testGame.Player1.setMark('O');
+      expect(testGame.Player1.name).toEqual('Kelly');
+      expect(testGame.Player1.mark).toEqual('O');
+    });
+  });
+
+  describe('Player2', function(){
+    it('should be a Player object', function(){
+      expect(testGame.Player2).toBeTruthy();
+    });
+
+    it('should be able to setName and setMark of Player1', function(){
+      testGame.Player2.setName('Esther');
+      testGame.assignMark();
+      expect(testGame.Player2.name).toEqual('Esther');
+      expect(testGame.Player2.mark).toEqual('X');
+    });
+  });
+
+
 
   // describe('play', function(){
   //   // positive case
