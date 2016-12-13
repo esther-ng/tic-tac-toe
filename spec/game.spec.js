@@ -34,7 +34,7 @@ describe('Game', function(){
       expect(testGame.Player2).toBeTruthy();
     });
 
-    it('should be able to setName and setMark of Player1', function(){
+    it('should be able to setName and setMark of Player2', function(){
       testGame.Player2.setName('Esther');
       testGame.assignMark();
       expect(testGame.Player2.name).toEqual('Esther');
@@ -42,15 +42,27 @@ describe('Game', function(){
     });
   });
 
+  describe('turn', function(){
+    it('should return a Player', function(){
+      expect(testGame.turn).toBeDefined();
+    });
+  });
 
+  describe('counter', function(){
+    it('should start at 0 and keep track of valid turns', function(){
+      expect(testGame.counter).toEqual(0);
+    });
+  });
 
-  // describe('play', function(){
-  //   // positive case
-  //   it('should put a mark on an unoccupied spot based on the coordinates ', function(){
-  //
-  //   });
-  //
-  //   // negative case
-  //
-  // });
+  describe('play', function(){
+    // positive case
+    it('should put a mark on an unoccupied spot based on the coordinates ', function(){
+      testGame.turn = testGame.Player1;
+      testGame.play(0,2);
+      expect(testGame.board[0][2]).toEqual('O');
+    });
+
+    // negative case
+
+  });
 });
