@@ -55,26 +55,61 @@ describe('Game', function(){
   });
 
   describe('keepPlaying()', function(){
-    // if there is a winning columns
-    it('should return false if there is a winning column', function(){
+    // if there is a winning row
+    it('should return false if there is a winning row', function(){
       var winningRowGame = new Game();
       winningRowGame.Player1.setName("Kelly");
       winningRowGame.Player1.setMark("O");
       winningRowGame.Player2.setName("Esther");
       winningRowGame.assignMark();
       winningRowGame.turn = winningRowGame.Player2;
-      winningRowGame.play(0,2); // x
+      winningRowGame.play(2,0); // x
       winningRowGame.play(1,0); // o
-      winningRowGame.play(1,2); // x
+      winningRowGame.play(2,1); // x
       winningRowGame.play(1,1); // o
-      // console.log(winningRowGame.board);
-      // console.log(winningRowGame.turn);
-      // console.log(winningRowGame.Player1.mark);
       winningRowGame.play(2,2); // x
-      // console.log(winningRowGame.board);
       expect(winningRowGame.keepPlaying()).toEqual(false);
       expect(winningRowGame.outcome).toEqual(winningRowGame.Player2);
     });
+
+    // if there is a winning column
+    it('should return false if there is a winning column', function(){
+      var winningColumnGame = new Game();
+      winningColumnGame.Player1.setName("Kelly");
+      winningColumnGame.Player1.setMark("O");
+      winningColumnGame.Player2.setName("Esther");
+      winningColumnGame.assignMark();
+      winningColumnGame.turn = winningColumnGame.Player2;
+      winningColumnGame.play(0,2); // x
+      winningColumnGame.play(1,0); // o
+      winningColumnGame.play(1,2); // x
+      winningColumnGame.play(1,1); // o
+      winningColumnGame.play(2,2); // x
+      expect(winningColumnGame.keepPlaying()).toEqual(false);
+      expect(winningColumnGame.outcome).toEqual(winningColumnGame.Player2);
+    });
+
+    // if there is winning diagonal
+    it('should return false if there is a winning diagonal', function(){
+      var winningDiagonalGame = new Game();
+      winningDiagonalGame.Player1.setName("Kelly");
+      winningDiagonalGame.Player1.setMark("O");
+      winningDiagonalGame.Player2.setName("Esther");
+      winningDiagonalGame.assignMark();
+      winningDiagonalGame.turn = winningDiagonalGame.Player2;
+      winningDiagonalGame.play(0,2); // x
+      winningDiagonalGame.play(1,0); // o
+      winningDiagonalGame.play(1,1); // x
+      winningDiagonalGame.play(2,1); // o
+      winningDiagonalGame.play(2,0); // x
+      expect(winningDiagonalGame.keepPlaying()).toEqual(false);
+      expect(winningDiagonalGame.outcome).toEqual(winningDiagonalGame.Player2);
+    });
+
+    // check if there is a tie and keep playing == false
+
+
+    // check if there is no winner yet and keep playing == true
   });
 
   describe('play', function(){

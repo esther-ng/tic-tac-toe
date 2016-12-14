@@ -49,11 +49,26 @@ Game.prototype.keepPlaying = function(){
   //     return false;
   //   }
   // }, this);
-  // check columns
+
   for (var i = 0; i < 3; i++){
-    if (this.board[0][i] == this.board[1][i] && this.board[1][i] == this.board[2][i]) {
+    if (this.board[i][0] == this.board[i][1] && this.board[i][1] == this.board[i][2])  {
       // console.log("Inside the if" + this.Player1.mark);
-      if (this.Player1.mark == this.board[0][i]){
+      if (this.Player1.mark == this.board[i][0]){
+        this.outcome = this.Player1;
+        // console.log(this.outcome);
+      } else {
+        this.outcome = this.Player2;
+        // console.log(this.outcome);
+      }
+      // console.log("before False" + i);
+      return false;
+    }
+  }
+  // check columns
+  for (var j = 0; j < 3; j++){
+    if (this.board[0][j] == this.board[1][j] && this.board[1][j] == this.board[2][j])  {
+      // console.log("Inside the if" + this.Player1.mark);
+      if (this.Player1.mark == this.board[0][j]){
         this.outcome = this.Player1;
         // console.log(this.outcome);
       } else {
