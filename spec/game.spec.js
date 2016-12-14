@@ -153,33 +153,33 @@ describe('Game', function(){
     });
 
     // check if there is no winner yet and keep playing == true
-    it('should return false if there is a tie', function(){
-      var tieGame = new Game();
-      tieGame.Player1.setName("Kelly");
-      tieGame.Player1.setMark("O");
-      tieGame.Player2.setName("Esther");
-      tieGame.assignMark();
-      tieGame.turn = tieGame.Player2;
-      // console.log("First turn: " + tieGame.turn.name);
-      // console.log(tieGame.keepPlaying());
-      tieGame.play(0,1); // x
-      // console.log("2nd turn: " + tieGame.turn.name);
-      // console.log(tieGame.keepPlaying());
-      tieGame.play(0,0); // o
-      // console.log("3rd turn: " + tieGame.turn.name);
-      // console.log(tieGame.keepPlaying());
-      tieGame.play(1,1); // x
-      // console.log("4th turn: " + tieGame.turn.name);
-      // console.log(tieGame.keepPlaying());
-      tieGame.play(0,2); // o
-      // console.log("5th turn: " + tieGame.turn.name);
-      // console.log(tieGame.keepPlaying());
-      tieGame.play(1,2); // x
-      // console.log("6th turn: " + tieGame.turn.name);
-      // console.log(tieGame.keepPlaying());
-      tieGame.play(1,0); // o
-      expect(tieGame.keepPlaying()).toEqual(true);
-      expect(tieGame.outcome).toEqual(null);
+    it('should return true when there is no winner yet', function(){
+      var continuedGame = new Game();
+      continuedGame.Player1.setName("Kelly");
+      continuedGame.Player1.setMark("O");
+      continuedGame.Player2.setName("Esther");
+      continuedGame.assignMark();
+      continuedGame.turn = continuedGame.Player2;
+      // console.log("First turn: " + continuedGame.turn.name);
+      // console.log(continuedGame.keepPlaying());
+      continuedGame.play(0,1); // x
+      // console.log("2nd turn: " + continuedGame.turn.name);
+      // console.log(continuedGame.keepPlaying());
+      continuedGame.play(0,0); // o
+      // console.log("3rd turn: " + continuedGame.turn.name);
+      // console.log(continuedGame.keepPlaying());
+      continuedGame.play(1,1); // x
+      // console.log("4th turn: " + continuedGame.turn.name);
+      // console.log(continuedGame.keepPlaying());
+      continuedGame.play(0,2); // o
+      // console.log("5th turn: " + continuedGame.turn.name);
+      // console.log(continuedGame.keepPlaying());
+      continuedGame.play(1,2); // x
+      // console.log("6th turn: " + continuedGame.turn.name);
+      // console.log(continuedGame.keepPlaying());
+      continuedGame.play(1,0); // o
+      expect(continuedGame.keepPlaying()).toEqual(true);
+      expect(continuedGame.outcome).toEqual(null);
     });
 
   });
