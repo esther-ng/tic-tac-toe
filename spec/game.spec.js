@@ -55,9 +55,25 @@ describe('Game', function(){
   });
 
   describe('keepPlaying()', function(){
-    // if there is a winning diagonal
-    it('should return false if there is a winning diagonal', function(){
-
+    // if there is a winning columns
+    it('should return false if there is a winning column', function(){
+      var winningRowGame = new Game();
+      winningRowGame.Player1.setName("Kelly");
+      winningRowGame.Player1.setMark("O");
+      winningRowGame.Player2.setName("Esther");
+      winningRowGame.assignMark();
+      winningRowGame.turn = winningRowGame.Player2;
+      winningRowGame.play(0,2); // x
+      winningRowGame.play(1,0); // o
+      winningRowGame.play(1,2); // x
+      winningRowGame.play(1,1); // o
+      // console.log(winningRowGame.board);
+      // console.log(winningRowGame.turn);
+      // console.log(winningRowGame.Player1.mark);
+      winningRowGame.play(2,2); // x
+      // console.log(winningRowGame.board);
+      expect(winningRowGame.keepPlaying()).toEqual(false);
+      expect(winningRowGame.outcome).toEqual(winningRowGame.Player2);
     });
   });
 
@@ -92,18 +108,18 @@ describe('Game', function(){
       testGame2.assignMark();
       testGame2.turn = testGame2.Player2;
       testGame2.play(0,0); // x
-      console.log("after first play" + testGame2.turn.name);
-      console.log("after first play" + testGame2.board[0][0]);
+      // console.log("after first play" + testGame2.turn.name);
+      // console.log("after first play" + testGame2.board[0][0]);
       testGame2.play(0,1); // o
-      console.log("after second play" + testGame2.turn.name);
-      console.log("after second play" + testGame2.board[0][1]);
+      // console.log("after second play" + testGame2.turn.name);
+      // console.log("after second play" + testGame2.board[0][1]);
       testGame2.play(1,1); // x
       testGame2.play(1,2); // o
       testGame2.play(2,2); // x
-      console.log(testGame2.counter);
-      console.log(testGame2.turn.name);
-      console.log(testGame2.keepPlaying());
-      console.log(testGame2.board);
+      // console.log(testGame2.counter);
+      // console.log(testGame2.turn.name);
+      // console.log(testGame2.keepPlaying());
+      // console.log(testGame2.board);
       expect(testGame2.outcome).toEqual(testGame2.Player2);
     });
     // if there's no winner yet

@@ -37,24 +37,30 @@ Game.prototype.assignMark = function(){
 
 Game.prototype.keepPlaying = function(){
   // check rows
-  this.board.forEach(function(row){
-    if (row[0] === row[1] && row[1] === row[2] && row[2] !== null){
-      if (this.Player1.mark === row[0]){
-        this.outcome = this.Player1;
-      } else {
-        this.outcome = this.Player2;
-      }
-      return false;
-    }
-  });
+
+
+  // this.board.forEach(function(row){
+  //   if (row[0] == row[1] && row[1] == row[2] && row[2] !== null){
+  //     if (this.Player1.mark == row[0]){
+  //       this.outcome = this.Player1;
+  //     } else {
+  //       this.outcome = this.Player2;
+  //     }
+  //     return false;
+  //   }
+  // }, this);
   // check columns
-  for (var i = 0; i > 2; i++){
-    if (this.board[0][i] === this.board[1][i] && this.board[1][i] === this.board[2][i]) {
-      if (this.Player1.mark === this.board[0][i]){
+  for (var i = 0; i < 3; i++){
+    if (this.board[0][i] == this.board[1][i] && this.board[1][i] == this.board[2][i]) {
+      // console.log("Inside the if" + this.Player1.mark);
+      if (this.Player1.mark == this.board[0][i]){
         this.outcome = this.Player1;
+        // console.log(this.outcome);
       } else {
         this.outcome = this.Player2;
+        // console.log(this.outcome);
       }
+      // console.log("before False" + i);
       return false;
     }
   }
