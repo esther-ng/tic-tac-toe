@@ -55,14 +55,26 @@ describe('Game', function(){
   });
 
   describe('play', function(){
-    // positive case
+    // positive case, also test the counter and turn
     it('should put a mark on an unoccupied spot based on the coordinates ', function(){
+      var beforeCounter = testGame.counter;
       testGame.turn = testGame.Player1;
       testGame.play(0,2);
       expect(testGame.board[0][2]).toEqual('O');
+      expect(beforeCounter + 1).toEqual(testGame.counter);
+      expect(testGame.turn).toEqual(testGame.Player2);
     });
 
-    // negative case
+    // negative case, also test the counter and turn
+    it('should not change a mark on an occupied spot based on the coordinates ', function(){
+      var beforeCounter = testGame.counter;
+      testGame.board[1][2] = "X";
+      testGame.turn = testGame.Player1;
+      testGame.play(1,2);
+      expect(testGame.board[1][2]).toEqual('X');
+      expect(beforeCounter).toEqual(testGame.counter);
+      expect(testGame.turn).not.toEqual(testGame.Player2);
+    });
 
   });
 });
