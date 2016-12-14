@@ -243,7 +243,7 @@ describe('Game', function(){
       expect(fullGame.outcome).toEqual(null);
       // check the counter
       expect(fullGame.counter).toEqual(8);
-      // check the status 
+      // check the status
       expect(fullGame.keepPlaying()).toEqual(true);
       // when we play the last move, it should declare the winner
       expect(fullGame.play(0,2)).toEqual(fullGame.Player2);
