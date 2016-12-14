@@ -54,6 +54,12 @@ describe('Game', function(){
     });
   });
 
+  describe('outcome', function(){
+    it('should have a null value at the beginning of the game', function(){
+      expect(testGame.outcome).toEqual(null);
+    });
+  });
+
   describe('keepPlaying()', function(){
     // if there is a winning row
     it('should return false if there is a winning row', function(){
@@ -179,7 +185,7 @@ describe('Game', function(){
   });
 
   describe('play', function(){
-    // positive case, also test the counter and turn
+    // positive case: player places a valid move. also test the counter and turn
     it('should put a mark on an unoccupied spot based on the coordinates ', function(){
       var beforeCounter = testGame.counter;
       testGame.turn = testGame.Player1;
@@ -189,7 +195,7 @@ describe('Game', function(){
       expect(testGame.turn).toEqual(testGame.Player2);
     });
 
-    // negative case, also test the counter and turn
+    // negative case: player places an invalid move.  also test the counter and turn
     it('should not change a mark on an occupied spot based on the coordinates ', function(){
       var beforeCounter = testGame.counter;
       testGame.board[1][2] = "X";
@@ -200,39 +206,66 @@ describe('Game', function(){
       expect(testGame.turn).not.toEqual(testGame.Player2);
     });
 
-    // if there's a winner...
+    // if there's a winner after 5 moves
     it('starting from the 5th play, should check if there is a winner before the next turn', function(){
       var testGame2 = new Game();
-      testGame2.Player2.setName("Esther");
       testGame2.Player1.setName("Kelly");
       testGame2.Player1.setMark("O");
+      testGame2.Player2.setName("Esther");
       testGame2.assignMark();
       testGame2.turn = testGame2.Player2;
       testGame2.play(0,0); // x
-      // console.log("after first play" + testGame2.turn.name);
-      // console.log("after first play" + testGame2.board[0][0]);
       testGame2.play(0,1); // o
-      // console.log("after second play" + testGame2.turn.name);
-      // console.log("after second play" + testGame2.board[0][1]);
       testGame2.play(1,1); // x
       testGame2.play(1,2); // o
-      testGame2.play(2,2); // x
-      // console.log(testGame2.counter);
-      // console.log(testGame2.turn.name);
-      // console.log(testGame2.keepPlaying());
-      // console.log(testGame2.board);
-      expect(testGame2.outcome).toEqual(testGame2.Player2);
+      expect(testGame2.play(2,2)).toEqual(testGame2.Player2);
     });
-    // if there's no winner yet
-    // it('starting from the 5th play, should check if there is a winner before the next turn', function(){
-    //   testGame.turn = testGame.Player2;
-    //   testGame.play(0,0); // x
-    //   testGame.play(0,1); // o
-    //   testGame.play(1,1); // x
-    //   testGame.play(1,2); // o
-    //   testGame.play(2,2); // x
-    //   expect(testGame.winner).toEqual(testGame.Player2);
-    // });
+
+    // if the board is full and we have a winner
+    it('should be able to identify the winner when the board is full and one player has a clear win', function(){
+      var fullGame = new Game();
+      fullGame.Player1.setName("Kelly");
+      fullGame.Player1.setMark("O");
+      fullGame.Player2.setName("Esther");
+      fullGame.assignMark();
+      fullGame.turn = fullGame.Player2;
+      // console.log("First turn: " + fullGame.turn.name);
+      // console.log(fullGame.keepPlaying());
+      fullGame.play(2,1); // x
+      // console.log("2nd turn: " + fullGame.turn.name);
+      // console.log(fullGame.keepPlaying());
+      fullGame.play(1,1); // o
+      // console.log("3rd turn: " + fullGame.turn.name);
+      // console.log(fullGame.keepPlaying());
+      fullGame.play(1,2); // x
+      // console.log("4th turn: " + fullGame.turn.name);
+      // console.log(fullGame.keepPlaying());
+      fullGame.play(0,0); // o
+      // console.log("5th turn: " + fullGame.turn.name);
+      // console.log(fullGame.keepPlaying());
+      fullGame.play(2,2); // x
+      // console.log("6th turn: " + fullGame.turn.name);
+      // console.log(fullGame.keepPlaying());
+      fullGame.play(0,1); // o
+      // console.log("7th turn: " + fullGame.turn.name);
+      // console.log(fullGame.keepPlaying());
+      fullGame.play(1,0); // x
+      // console.log("8th turn: " + fullGame.turn.name);
+      // console.log(fullGame.keepPlaying());
+      fullGame.play(2,0); // o
+      // console.log("9th turn: " + fullGame.turn.name);
+      // console.log(fullGame.keepPlaying());
+
+      // check that outcome is still null before the last move
+      expect(fullGame.outcome).toEqual(null);
+      // check the counter right before the last move that would fill the board
+      expect(fullGame.counter).toEqual(8);
+      // check the status right before the last move that would fill the board
+      expect(fullGame.keepPlaying()).toEqual(true);
+      // when we play the last move, it should declare the winner
+      expect(fullGame.play(0,2)).toEqual(fullGame.Player2);
+      expect(fullGame.counter).toEqual(9);
+    });
 
   });
 });
