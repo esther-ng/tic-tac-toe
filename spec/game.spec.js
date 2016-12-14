@@ -229,38 +229,21 @@ describe('Game', function(){
       fullGame.Player2.setName("Esther");
       fullGame.assignMark();
       fullGame.turn = fullGame.Player2;
-      // console.log("First turn: " + fullGame.turn.name);
-      // console.log(fullGame.keepPlaying());
+      // Now we play 8 times
       fullGame.play(2,1); // x
-      // console.log("2nd turn: " + fullGame.turn.name);
-      // console.log(fullGame.keepPlaying());
       fullGame.play(1,1); // o
-      // console.log("3rd turn: " + fullGame.turn.name);
-      // console.log(fullGame.keepPlaying());
       fullGame.play(1,2); // x
-      // console.log("4th turn: " + fullGame.turn.name);
-      // console.log(fullGame.keepPlaying());
       fullGame.play(0,0); // o
-      // console.log("5th turn: " + fullGame.turn.name);
-      // console.log(fullGame.keepPlaying());
       fullGame.play(2,2); // x
-      // console.log("6th turn: " + fullGame.turn.name);
-      // console.log(fullGame.keepPlaying());
       fullGame.play(0,1); // o
-      // console.log("7th turn: " + fullGame.turn.name);
-      // console.log(fullGame.keepPlaying());
       fullGame.play(1,0); // x
-      // console.log("8th turn: " + fullGame.turn.name);
-      // console.log(fullGame.keepPlaying());
       fullGame.play(2,0); // o
-      // console.log("9th turn: " + fullGame.turn.name);
-      // console.log(fullGame.keepPlaying());
-
-      // check that outcome is still null before the last move
+      // Before we play the last move that would fill the board, we should:
+      // check that outcome is still null
       expect(fullGame.outcome).toEqual(null);
-      // check the counter right before the last move that would fill the board
+      // check the counter
       expect(fullGame.counter).toEqual(8);
-      // check the status right before the last move that would fill the board
+      // check the status 
       expect(fullGame.keepPlaying()).toEqual(true);
       // when we play the last move, it should declare the winner
       expect(fullGame.play(0,2)).toEqual(fullGame.Player2);
