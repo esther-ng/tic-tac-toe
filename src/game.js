@@ -27,60 +27,31 @@ Game.prototype.assignMark = function(){
   }
 };
 
-// var keepPlaying = function(){
-//   if (checkWinner()){
-//     return false;
-//   } else {
-//     return true;
-//   }
-// };
-
 Game.prototype.keepPlaying = function(){
   // check rows
-
-
-  // this.board.forEach(function(row){
-  //   if (row[0] == row[1] && row[1] == row[2] && row[2] !== null){
-  //     if (this.Player1.mark == row[0]){
-  //       this.outcome = this.Player1;
-  //     } else {
-  //       this.outcome = this.Player2;
-  //     }
-  //     return false;
-  //   }
-  // }, this);
-
   for (var i = 0; i < 3; i++){
-    if (this.board[i][0] == this.board[i][1] && this.board[i][1] == this.board[i][2])  {
-      // console.log("Inside the if" + this.Player1.mark);
+    if (this.board[i][0] == this.board[i][1] && this.board[i][1] == this.board[i][2] && this.board[i][0] !== null) {
       if (this.Player1.mark == this.board[i][0]){
         this.outcome = this.Player1;
-        // console.log(this.outcome);
       } else {
         this.outcome = this.Player2;
-        // console.log(this.outcome);
       }
-      // console.log("before False" + i);
       return false;
     }
   }
   // check columns
   for (var j = 0; j < 3; j++){
-    if (this.board[0][j] == this.board[1][j] && this.board[1][j] == this.board[2][j])  {
-      // console.log("Inside the if" + this.Player1.mark);
+    if (this.board[0][j] == this.board[1][j] && this.board[1][j] == this.board[2][j] && this.board[0][j] !== null)  {
       if (this.Player1.mark == this.board[0][j]){
         this.outcome = this.Player1;
-        // console.log(this.outcome);
       } else {
         this.outcome = this.Player2;
-        // console.log(this.outcome);
       }
-      // console.log("before False" + i);
       return false;
     }
   }
   // check diagonals
-  if ((this.board[0][0] == this.board[1][1] && this.board[1][1] == this.board[2][2]) || (this.board[0][2] == this.board[1][1] && this.board[1][1] == this.board[2][0])){
+  if ((this.board[0][0] == this.board[1][1] && this.board[1][1] == this.board[2][2] && this.board[1][1] !== null) || (this.board[0][2] == this.board[1][1] && this.board[1][1] == this.board[2][0] && this.board[1][1] !== null)){
     if (this.Player1.mark == this.board[1][1]){
       this.outcome = this.Player1;
     } else {
@@ -88,6 +59,7 @@ Game.prototype.keepPlaying = function(){
     }
     return false;
   }
+
   // check if board is full and there is a tie
   if (this.counter === 9) {
     this.outcome = "tie";
