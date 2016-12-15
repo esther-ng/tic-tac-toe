@@ -59,6 +59,14 @@ Game.prototype.keepPlaying = function(){
   return true;
 };
 
+Game.prototype.nextTurn = function(){
+  if (this.turn == this.Player1) {
+    this.turn = this.Player2;
+  } else {
+    this.turn = this.Player1;
+  }
+};
+
 Game.prototype.play = function(x, y){
   if (this.board[x][y] === null) {
     this.board[x][y] = this.turn.mark;
@@ -68,11 +76,7 @@ Game.prototype.play = function(x, y){
         return this.outcome;
       }
     }
-    if (this.turn == this.Player1) {
-      this.turn = this.Player2;
-    } else {
-      this.turn = this.Player1;
-    }
+    this.nextTurn();
   }
 };
 
