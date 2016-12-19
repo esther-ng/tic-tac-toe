@@ -9,7 +9,7 @@
     <div id="application">
       <table id='board'>
         <tr>
-          <td></td><td></td><td></td>
+          <td class="0"></td><td class="1"></td><td class="2"></td>
         </tr>
         <tr>
           <td></td><td></td><td></td>
@@ -18,7 +18,17 @@
           <td></td><td></td><td></td>
         </tr>
       </table>
+      <section id="turn">
+        
+      </section>
     </div>
+    <!-- Underscore Templates -->
+    <script type="text/template" id="tmpl-cell">
+      <td class="cell">
+        <%- mark %>
+      </td>
+    </script>
+
     <script src="/app.bundle.js" charset="utf-8"></script>
   </body>
 </html>

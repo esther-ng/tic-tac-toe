@@ -1,10 +1,10 @@
-import Player from 'player';
+import Player from './player';
 
 var Game = function() {
   this.board = [
-    [null, null, null],
-    [null, null, null],
-    [null, null, null]
+    ["0", "1", "2"],
+    ["3", "4", "5"],
+    ["6", "7", "8"]
   ];
 
   // instantiate 2 Player objects
