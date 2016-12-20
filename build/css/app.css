@@ -27,3 +27,16 @@ table {
   background: #e4e4e4;
   cursor: pointer;
 }
+
+#modal {
+  display: none;
+  background-color: black;
+  color: white;
+  z-index: 1;
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  height: 50%;
+  width: 50%;
+  text-align: center;
+}

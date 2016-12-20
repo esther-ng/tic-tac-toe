@@ -6,7 +6,7 @@ import BoardView from 'app/views/board_view';
 var GameView = Backbone.View.extend({
   initialize: function(){
     this.boardView = new BoardView({
-      // board: this.model.get('board'),
+      board: this.model.get('board'),
       el: this.$('#board'),
     });
     this.listenTo(this.boardView, 'play', this.playIt);
@@ -17,17 +17,21 @@ var GameView = Backbone.View.extend({
     // this.turn = this.model.turn.mark;
     this.listenTo(this.model, 'change:board', console.log('board has changed!'));
     this.listenTo(this.model, 'change:outcome', console.log('Game Over'));
+    // return this;
   },
 
-  render: function() {
+  render: function(coordinates) {
     // this.delegateEvents();
     this.$('#turn').text('Turn ' + this.model.turn.mark);
-    this.boardView.render(this.model.get('board'));
+    this.boardView.render({
+      board: this.model.get('board'),
+      cellNum: coordinates
+    });
     return this;
   },
 
   playIt: function(e){
-    console.log('now actually play from the model' + e);
+    console.log('now actually play from the model inside game view play it' + e);
     var coordinatesLookup = {
       '0': [0,0],
       '1': [0,1],
@@ -40,13 +44,18 @@ var GameView = Backbone.View.extend({
       '8': [2,2]
     };
     // console.log(coordinatesLookup[e]);
-    this.model.play(coordinatesLookup[e]);
-    // console.log(this.model.get('board'));
+    // this.coordinates = e;
+    if (this.model.play(coordinatesLookup[e]) === undefined){
+      this.render(e);
+    } else {
+      this.model.trigger('gameover',  this.model.get('outcome'));
+    }
+    console.log(this.model.get('board'));
     // console.log(this.model.toJSON());
-    // console.log(this.model.hasChanged('board'));
+    console.log(this.model.hasChanged());
+    // console.log()
     // var mo = this.model;
     // return mo;
-    this.render();
   }
 });
 

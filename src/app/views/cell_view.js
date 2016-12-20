@@ -11,9 +11,9 @@ var CellView = Backbone.View.extend({
     this.$el.text(this.mark);
   },
 
-  render: function() {
+  render: function(mark) {
     // var html = this.template({mark: this.mark});
-
+    this.$el.text(mark);
     // this.delegateEvents();
     return this;
   },
@@ -23,7 +23,8 @@ var CellView = Backbone.View.extend({
   },
 
   triggerMark: function(e){
-    console.log('clicked' + this.klass);
+    e.stopPropagation();
+    console.log('clicked on cell view' + this.klass);
     this.trigger('coordinates', this.klass);
   }
 });

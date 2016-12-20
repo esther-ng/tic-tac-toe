@@ -93,9 +93,12 @@ var Game = Backbone.Model.extend({
       this.set('board', boardArray);
       // console.log('model changed?' + JSON.stringify(this.changedAttributes('board')));
       this.counter ++;
+      console.log('counter inside game model' + this.counter);
       if (this.counter >= 5) {
+        console.log('inside if counter is 5 of or more' + this.counter);
         if (this.keepPlaying() === false){
-          return this.get('outcome');
+          console.log('inside stop playing' + this.get('outcome'));
+          return this.get('outcome'); // this should make a modal pop up?
         }
       }
       this.nextTurn();
