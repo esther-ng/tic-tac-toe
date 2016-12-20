@@ -15,7 +15,7 @@ var BoardView = Backbone.View.extend({
       // var cellSelector = ;
       var cellView = new CellView({
         el: this.$('td:eq(' + i + ')'),
-        // mark: null,
+        mark: null,
         klass: i.toString()
       });
       this.listenTo(cellView, 'coordinates', this.playMark);

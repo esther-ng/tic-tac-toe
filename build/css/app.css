@@ -1,6 +1,21 @@
 * {
   margin: 0;
   padding: 0;
+  text-align: center;
+}
+
+body {
+  margin-top: 10%;
+}
+
+button {
+  padding: 2%;
+  margin: 5%;
+}
+
+button#close {
+  background-color: white;
+  color: grey;
 }
 
 table {
@@ -20,7 +35,7 @@ table {
   border: 1px solid #1c1c1c;
   font-family: Helvetica;
   font-size: 30px;
-  text-align: center;
+  /*text-align: center;*/
 }
 
 #board tr td:hover {
@@ -38,5 +53,10 @@ table {
   left: 25%;
   height: 50%;
   width: 50%;
-  text-align: center;
+  /*text-align: center;*/
+}
+
+#btn-save {
+  background-color: grey;
+  padding: 2%;
 }
