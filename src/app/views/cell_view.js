@@ -14,7 +14,7 @@ var CellView = Backbone.View.extend({
   render: function() {
     // var html = this.template({mark: this.mark});
 
-    this.delegateEvents();
+    // this.delegateEvents();
     return this;
   },
 

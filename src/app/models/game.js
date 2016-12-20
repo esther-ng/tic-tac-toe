@@ -80,12 +80,18 @@ var Game = Backbone.Model.extend({
     }
   },
 
-  play: function(x, y){
+  play: function(coord){
+    var x = coord[0];
+    var y = coord[1];
     var boardArray = this.get('board');
     // console.log(boardArray);
+    // console.log(coord);
+    // console.log(boardArray[x][y]);
     if (boardArray[x][y] === null) {
+      // console.log('inside board if' + this.turn.mark);
       boardArray[x][y] = this.turn.mark;
       this.set('board', boardArray);
+      // console.log('model changed?' + JSON.stringify(this.changedAttributes('board')));
       this.counter ++;
       if (this.counter >= 5) {
         if (this.keepPlaying() === false){

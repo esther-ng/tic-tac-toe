@@ -5,13 +5,13 @@ import CellView from 'app/views/cell_view';
 
 var BoardView = Backbone.View.extend({
   initialize: function(options){
-    this.board = options.board.reduce(function(a,b){
-      return a.concat(b);
-    }, []);
     // this.table = options.table;
   },
 
-  render: function() {
+  render: function(board) {
+    this.board = board.reduce(function(a,b){
+      return a.concat(b);
+    }, []);
     // fill in html with this.board data
     for (var i = 0; i < this.board.length; i++) {
       // var cellSelector = ;
@@ -26,7 +26,8 @@ var BoardView = Backbone.View.extend({
       // for (var j = 0; j < this.board[i].length; j++)  {
       // }
     }
-    this.delegateEvents();
+    // this.delegateEvents();
+    // console.log(this.board);
     return this;
   },
 

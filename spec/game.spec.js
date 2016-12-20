@@ -69,11 +69,11 @@ describe('Game', function(){
       winningRowGame.Player2.setName("Esther");
       winningRowGame.assignMark();
       winningRowGame.turn = winningRowGame.Player2;
-      winningRowGame.play(2,0); // x
-      winningRowGame.play(1,0); // o
-      winningRowGame.play(2,1); // x
-      winningRowGame.play(1,1); // o
-      winningRowGame.play(2,2); // x
+      winningRowGame.play([2,0]); // x
+      winningRowGame.play([1,0]); // o
+      winningRowGame.play([2,1]); // x
+      winningRowGame.play([1,1]); // o
+      winningRowGame.play([2,2]); // x
       expect(winningRowGame.keepPlaying()).toEqual(false);
       expect(winningRowGame.get('outcome')).toEqual(winningRowGame.Player2.mark);
     });
@@ -89,19 +89,19 @@ describe('Game', function(){
       winningColumnGame.turn = winningColumnGame.Player2;
       // console.log(winningColumnGame.get('board'));
       // console.log(winningColumnGame.turn);
-      winningColumnGame.play(0,2); // x
+      winningColumnGame.play([0,2]); // x
       // console.log(winningColumnGame.get('board'));
       // console.log(winningColumnGame.turn);
-      winningColumnGame.play(1,0); // o
+      winningColumnGame.play([1,0]); // o
       // console.log(winningColumnGame.get('board'));
       // console.log(winningColumnGame.turn);
-      winningColumnGame.play(1,2); // x
+      winningColumnGame.play([1,2]); // x
       // console.log(winningColumnGame.get('board'));
       // console.log(winningColumnGame.turn);
-      winningColumnGame.play(1,1); //
+      winningColumnGame.play([1,1]); //
       // console.log(winningColumnGame.get('board'));
       // console.log(winningColumnGame.turn);
-      winningColumnGame.play(2,2); // x
+      winningColumnGame.play([2,2]); // x
       // console.log(winningColumnGame.get('board'));
       // console.log(winningColumnGame.turn);
       // console.log(winningColumnGame.get('board'));
@@ -117,11 +117,11 @@ describe('Game', function(){
       winningDiagonalGame.Player2.setName("Esther");
       winningDiagonalGame.assignMark();
       winningDiagonalGame.turn = winningDiagonalGame.Player2;
-      winningDiagonalGame.play(0,2); // x
-      winningDiagonalGame.play(1,0); // o
-      winningDiagonalGame.play(1,1); // x
-      winningDiagonalGame.play(2,1); // o
-      winningDiagonalGame.play(2,0); // x
+      winningDiagonalGame.play([0,2]); // x
+      winningDiagonalGame.play([1,0]); // o
+      winningDiagonalGame.play([1,1]); // x
+      winningDiagonalGame.play([2,1]); // o
+      winningDiagonalGame.play([2,0]); // x
       expect(winningDiagonalGame.keepPlaying()).toEqual(false);
       expect(winningDiagonalGame.get('outcome')).toEqual(winningDiagonalGame.Player2.mark);
     });
@@ -136,31 +136,31 @@ describe('Game', function(){
       tieGame.turn = tieGame.Player2;
       // console.log("First turn: " + tieGame.turn.name);
       // console.log(tieGame.keepPlaying());
-      tieGame.play(0,1); // x
+      tieGame.play([0,1]); // x
       // console.log("2nd turn: " + tieGame.turn.name);
       // console.log(tieGame.keepPlaying());
-      tieGame.play(0,0); // o
+      tieGame.play([0,0]); // o
       // console.log("3rd turn: " + tieGame.turn.name);
       // console.log(tieGame.keepPlaying());
-      tieGame.play(1,1); // x
+      tieGame.play([1,1]); // x
       // console.log("4th turn: " + tieGame.turn.name);
       // console.log(tieGame.keepPlaying());
-      tieGame.play(0,2); // o
+      tieGame.play([0,2]); // o
       // console.log("5th turn: " + tieGame.turn.name);
       // console.log(tieGame.keepPlaying());
-      tieGame.play(1,2); // x
+      tieGame.play([1,2]); // x
       // console.log("6th turn: " + tieGame.turn.name);
       // console.log(tieGame.keepPlaying());
-      tieGame.play(1,0); // o
+      tieGame.play([1,0]); // o
       // console.log("7th turn: " + tieGame.turn.name);
       // console.log(tieGame.keepPlaying());
-      tieGame.play(2,0); // x
+      tieGame.play([2,0]); // x
       // console.log("8th turn: " + tieGame.turn.name);
       // console.log(tieGame.keepPlaying());
-      tieGame.play(2,1); // o
+      tieGame.play([2,1]); // o
       // console.log("9th turn: " + tieGame.turn.name);
       // console.log(tieGame.keepPlaying());
-      tieGame.play(2,2); // x
+      tieGame.play([2,2]); // x
       // console.log(tieGame.board);
       expect(tieGame.keepPlaying()).toEqual(false);
       expect(tieGame.get('outcome')).toEqual("draw");
@@ -176,22 +176,22 @@ describe('Game', function(){
       continuedGame.turn = continuedGame.Player2;
       // console.log("First turn: " + continuedGame.turn.name);
       // console.log(continuedGame.keepPlaying());
-      continuedGame.play(0,1); // x
+      continuedGame.play([0,1]); // x
       // console.log("2nd turn: " + continuedGame.turn.name);
       // console.log(continuedGame.keepPlaying());
-      continuedGame.play(0,0); // o
+      continuedGame.play([0,0]); // o
       // console.log("3rd turn: " + continuedGame.turn.name);
       // console.log(continuedGame.keepPlaying());
-      continuedGame.play(1,1); // x
+      continuedGame.play([1,1]); // x
       // console.log("4th turn: " + continuedGame.turn.name);
       // console.log(continuedGame.keepPlaying());
-      continuedGame.play(0,2); // o
+      continuedGame.play([0,2]); // o
       // console.log("5th turn: " + continuedGame.turn.name);
       // console.log(continuedGame.keepPlaying());
-      continuedGame.play(1,2); // x
+      continuedGame.play([1,2]); // x
       // console.log("6th turn: " + continuedGame.turn.name);
       // console.log(continuedGame.keepPlaying());
-      continuedGame.play(1,0); // o
+      continuedGame.play([1,0]); // o
       expect(continuedGame.keepPlaying()).toEqual(true);
       expect(continuedGame.get('outcome')).toEqual(null);
     });
@@ -203,7 +203,7 @@ describe('Game', function(){
     it('should put a mark on an unoccupied spot based on the coordinates ', function(){
       var beforeCounter = testGame.counter;
       testGame.turn = testGame.Player1;
-      testGame.play(0,2);
+      testGame.play([0,2]);
       expect(testGame.get('board')[0][2]).toEqual('O');
       expect(beforeCounter + 1).toEqual(testGame.counter);
       expect(testGame.turn).toEqual(testGame.Player2);
@@ -214,7 +214,7 @@ describe('Game', function(){
       var beforeCounter = testGame.counter;
       testGame.get('board')[1][2] = "X";
       testGame.turn = testGame.Player1;
-      testGame.play(1,2);
+      testGame.play([1,2]);
       expect(testGame.get('board')[1][2]).toEqual('X');
       expect(beforeCounter).toEqual(testGame.counter);
       expect(testGame.turn).not.toEqual(testGame.Player2);
@@ -228,11 +228,11 @@ describe('Game', function(){
       testGame2.Player2.setName("Esther");
       testGame2.assignMark();
       testGame2.turn = testGame2.Player2;
-      testGame2.play(0,0); // x
-      testGame2.play(0,1); // o
-      testGame2.play(1,1); // x
-      testGame2.play(1,2); // o
-      expect(testGame2.play(2,2)).toEqual(testGame2.Player2.mark);
+      testGame2.play([0,0]); // x
+      testGame2.play([0,1]); // o
+      testGame2.play([1,1]); // x
+      testGame2.play([1,2]); // o
+      expect(testGame2.play([2,2])).toEqual(testGame2.Player2.mark);
     });
 
     // if the board is full and we have a winner
@@ -244,14 +244,14 @@ describe('Game', function(){
       fullGame.assignMark();
       fullGame.turn = fullGame.Player2;
       // Now we play 8 times
-      fullGame.play(2,1); // x
-      fullGame.play(1,1); // o
-      fullGame.play(1,2); // x
-      fullGame.play(0,0); // o
-      fullGame.play(2,2); // x
-      fullGame.play(0,1); // o
-      fullGame.play(1,0); // x
-      fullGame.play(2,0); // o
+      fullGame.play([2,1]); // x
+      fullGame.play([1,1]); // o
+      fullGame.play([1,2]); // x
+      fullGame.play([0,0]); // o
+      fullGame.play([2,2]); // x
+      fullGame.play([0,1]); // o
+      fullGame.play([1,0]); // x
+      fullGame.play([2,0]); // o
       // Before we play the last move that would fill the board, we should:
       // check that outcome is still null
       expect(fullGame.get('outcome')).toEqual(null);
@@ -260,7 +260,7 @@ describe('Game', function(){
       // check the status
       expect(fullGame.keepPlaying()).toEqual(true);
       // when we play the last move, it should declare the winner
-      expect(fullGame.play(0,2)).toEqual(fullGame.Player2.mark);
+      expect(fullGame.play([0,2])).toEqual(fullGame.Player2.mark);
       expect(fullGame.counter).toEqual(9);
     });
 
