@@ -4,17 +4,6 @@ import Player from './player';
 import $ from 'jquery';
 
 var Game = Backbone.Model.extend({
-  defaults: {
-    // board:
-    //   // ["0", "1", "2"],
-    //   // ["3", "4", "5"],
-    //   // ["6", "7", "8"]
-    // ],
-    // players: [],
-    // "id": null,
-    // "played_at": null,
-    // "outcome": null
-  },
 
   url: 'http://quiet-dawn-33248.herokuapp.com/api/v1/games',
 // initialize(attributes, options) -- we've been calling attributes options
@@ -31,8 +20,8 @@ var Game = Backbone.Model.extend({
     this.set('outcome', null);
 
     if (attributes) {
-      console.log('attributes were passed');
-      console.log(attributes);
+      // console.log('attributes were passed');
+      // console.log(attributes);
       this.set('id', attributes.id);
       this.set('played_at', attributes.played_at);
       this.set('board', attributes.board);
@@ -138,13 +127,13 @@ var Game = Backbone.Model.extend({
       this.set('board', boardArray);
       // console.log('model changed?' + JSON.stringify(this.changedAttributes('board')));
       this.counter ++;
-      console.log('counter inside game model' + this.counter);
+      // console.log('counter inside game model' + this.counter);
       if (this.counter >= 5) {
-        console.log('inside if counter is 5 of or more' + this.counter);
+        // console.log('inside if counter is 5 of or more' + this.counter);
         if (this.keepPlaying() === false){
-          console.log('inside stop playing' + this.get('outcome'));
-          console.log(JSON.stringify(this));
-          console.log(JSON.stringify(this.attributes));
+          // console.log('inside stop playing' + this.get('outcome'));
+          // console.log(JSON.stringify(this));
+          // console.log(JSON.stringify(this.attributes));
           this.save();
           return this.get('outcome'); // this should make a modal pop up?
         }

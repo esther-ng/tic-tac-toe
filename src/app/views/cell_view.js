@@ -26,7 +26,7 @@ var CellView = Backbone.View.extend({
 
   triggerMark: function(e){
     e.stopPropagation();
-    console.log('clicked on cell view' + this.klass);
+    // console.log('clicked on cell view' + this.klass);
     this.trigger('coordinates', this.klass);
   }
 });

@@ -2,18 +2,12 @@ import $ from 'jquery';
 import Backbone from 'backbone';
 
 import Game from 'app/models/game';
-// import Player from 'app/models/game';
 import GameView from 'app/views/game_view';
 import GameHistView from 'app/views/game_hist_view';
 
 var ApplicationView = Backbone.View.extend({
   initialize: function(){
-    // this.game = new Game();
-    // var gameView = new GameView({
-    //   el: '#game',
-    //   model: this.game
-    // });
-    // gameView.render();
+
     // this.listenTo(this.gameView.model, 'gameover', this.showModal);
     // this.listenTo(this, '')
     // this.gameHistory = [];
@@ -22,7 +16,7 @@ var ApplicationView = Backbone.View.extend({
 
   render: function(){
     this.delegateEvents();
-    console.log('list of games' + JSON.stringify(this.model) + this.model[0]);
+    // console.log('list of games' + JSON.stringify(this.model) + this.model[0]);
     return this;
   },
 
@@ -42,10 +36,10 @@ var ApplicationView = Backbone.View.extend({
     this.game.Player2.setName(this.$("input[name='player-o']").val());
     this.game.assignMark();
     this.game.set('players', [this.game.Player1.name, this.game.Player2.name]);
-    console.log(this.game.get('players'));
+    // console.log(this.game.get('players'));
     $('#turn').text(this.game.turn.mark + ' goes first!');
     this.$('#modal').hide();
-    // $('#close').text('CLOSE');
+    this.$('#games-list').hide();
   },
 
   showModal: function(outcome){
@@ -53,7 +47,7 @@ var ApplicationView = Backbone.View.extend({
     $('#modal-text').text('the winner is ' + outcome);
     modal.show();
     this.$('#btn-save').hide();
-    console.log('this is the winner in appview' + outcome);
+    // console.log('this is the winner in appview' + outcome);
   },
 
   events: {
@@ -71,25 +65,23 @@ var ApplicationView = Backbone.View.extend({
     this.$("input[name='player-o']").val('');
     this.startPlaying();
     this.$('#start').show();
-    // this.$('#modal').hide();
   },
 
   startPlaying: function(e){
     this.newGame();
     var modal = this.$('#modal');
     modal.show();
-    console.log('this is the turn in appview' + this.game.turn.mark);
+    // console.log('this is the turn in appview' + this.game.turn.mark);
   },
 
   closeModal: function(e){
     this.$('#modal').hide();
-    // this.$('#start').hide();
   },
 
   showHistory: function(e){
     this.$('#games-list').empty();
     this.gameHistory = [];
-    // this.model.fetch();
+    this.model.fetch({reset: true});
     this.model.forEach(function(g){
       this.fillHistory(g);
     }, this);
