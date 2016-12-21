@@ -1,6 +1,7 @@
 import Backbone from 'backbone';
 import _ from 'underscore';
 import Player from './player';
+import $ from 'jquery';
 
 var Game = Backbone.Model.extend({
   defaults: {
@@ -13,7 +14,7 @@ var Game = Backbone.Model.extend({
     outcome: null
   },
 
-  url: '',
+  url: 'http://quiet-dawn-33248.herokuapp.com/api/v1/games',
 // initialize(attributes, options) -- we've been calling attributes options
   initialize: function(attributes, options){
     this.set('board', [
@@ -37,18 +38,27 @@ var Game = Backbone.Model.extend({
     // console.log(this.attributes);
   },
 
-  // toJSON: function(){
-  //   var attributes = _.clone(this.attributes);
-  //   // go through each attribute
-  //   $.each(attributes, function(key, value) {
-  //       // check if we have some nested object with a toJSON method
-  //       if (value.toJSON).isFunction()) {
-  //           // execute toJSON and overwrite the value in attributes
-  //           attributes[key] = value.toJSON();
-  //       }
-  //   });
-  //   return attributes;
-  // },
+  toJSON: function(){
+    var attributes = _.clone(this.attributes);
+    // go through each attribute
+    attributes.board = this.attributes.board.reduce(function(a,b){
+        return a.concat(b);
+      }, []);
+    for (var i = 0; i < attributes.board.length; i++) {
+      if (attributes.board[i] === null) {
+        attributes.board[i] = " ";
+      }
+    }
+        // go through each attribute
+    $.each(attributes, function(key, value) {
+        // check if we have some nested object with a toJSON method
+        if (_.has(value, 'toJSON')) {
+            // execute toJSON and overwrite the value in attributes
+            attributes[key] = value.toJSON();
+        }
+    });
+    return attributes;
+  },
 
   assignMark: function(){
     if (this.Player1.mark === "X") {
@@ -116,6 +126,9 @@ var Game = Backbone.Model.extend({
         console.log('inside if counter is 5 of or more' + this.counter);
         if (this.keepPlaying() === false){
           console.log('inside stop playing' + this.get('outcome'));
+          console.log(JSON.stringify(this));
+          console.log(JSON.stringify(this.attributes));
+          this.save();
           return this.get('outcome'); // this should make a modal pop up?
         }
       }

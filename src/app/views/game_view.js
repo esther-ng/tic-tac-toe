@@ -16,7 +16,7 @@ var GameView = Backbone.View.extend({
     // this.model.assignMark();
     this.turn = this.model.turn.mark;
     this.listenTo(this.model, 'change:board', console.log('board has changed!'));
-    this.listenTo(this.model, 'change:outcome', console.log('Game Over'));
+    this.listenTo(this.model, 'change', console.log('Game Over'));
     // return this;
   },
 
@@ -49,6 +49,7 @@ var GameView = Backbone.View.extend({
       this.render(e);
     } else {
       this.render(e);
+      // this.saveGame();
       this.model.trigger('gameover',  this.model.get('outcome'));
     }
     console.log(this.model.get('board'));
@@ -57,7 +58,11 @@ var GameView = Backbone.View.extend({
     // console.log()
     // var mo = this.model;
     // return mo;
-  }
+  },
+
+  // saveGame: function(){
+  //   console.log(this.model.save());
+  // }
 });
 
 export default GameView;

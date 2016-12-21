@@ -19,7 +19,7 @@ var ApplicationView = Backbone.View.extend({
 
   render: function(){
     this.delegateEvents();
-    console.log(JSON.stringify(this.model));
+    console.log('list of games' + JSON.stringify(this.model));
     return this;
   },
 
