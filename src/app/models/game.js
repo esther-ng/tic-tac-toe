@@ -20,6 +20,7 @@ var Game = Backbone.Model.extend({
     ]);
 
     this.set('players', []);
+    this.set('outcome', null);
     // instantiate 2 Player objects
     this.Player1 = new Player();
     this.Player2 = new Player();
@@ -87,7 +88,7 @@ var Game = Backbone.Model.extend({
     // console.log(boardArray);
     // console.log(coord);
     // console.log(boardArray[x][y]);
-    if (boardArray[x][y] === null) {
+    if (boardArray[x][y] === null && this.get('outcome') === null && this.turn.mark !== undefined) {
       // console.log('inside board if' + this.turn.mark);
       boardArray[x][y] = this.turn.mark;
       this.set('board', boardArray);

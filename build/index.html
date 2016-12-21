@@ -9,7 +9,7 @@
     <h1>TIC-TAC-TOE</h1>
     <div id="game">
       <section id="modal">
-        <h1 id="modal-text"></h1>
+        <h1 id="modal-text">Who's Playing?</h1>
         <form class="players">
           <label>
             Player X
@@ -19,10 +19,10 @@
             Player O
             <input type="text" name="player-o">
           </label>
-          <button id="btn-save">Save</button>
+          <button id="btn-save">Save & Play</button>
           <!-- <button class="button btn-cancel">Cancel</button> -->
         </form>
-        <button type="button" name="button" id="close">Close</button>
+        <!-- <button type="button" name="button" id="close">Close</button> -->
         <button type="button" name="button" id="play-again">Start Over</button>
       </section>
       <table id='board'>
@@ -40,7 +40,7 @@
 
       </section>
     </div>
-    <button type="button" name="button" id='start'>Who Goes First?</button>
+    <button type="button" name="button" id='start'>Play New Game</button>
     <!-- Underscore Templates -->
     <script type="text/template" id="tmpl-cell">
       <td class="cell">

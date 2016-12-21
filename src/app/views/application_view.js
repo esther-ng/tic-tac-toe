@@ -39,7 +39,8 @@ var ApplicationView = Backbone.View.extend({
     this.game.assignMark();
     this.game.set('players', [this.game.Player1.name, this.game.Player2.name]);
     console.log(this.game.get('players'));
-    $('#modal-text').text(this.game.turn.mark + ' goes first!');
+    $('#turn').text(this.game.turn.mark + ' goes first!');
+    this.$('#modal').hide();
     // $('#close').text('CLOSE');
   },
 
@@ -47,6 +48,7 @@ var ApplicationView = Backbone.View.extend({
     var modal = this.$('#modal');
     $('#modal-text').text('the winner is ' + outcome);
     modal.show();
+    this.$('#btn-save').hide();
     console.log('this is the winner in appview' + outcome);
   },
 
@@ -58,9 +60,13 @@ var ApplicationView = Backbone.View.extend({
   },
 
   resetPlay: function(e){
-    this.$('#modal').hide();
+    $('#modal-text').text("Who's Playing?");
+    this.$("#btn-save").show();
+    this.$("input[name='player-x']").val('');
+    this.$("input[name='player-o']").val('');
     this.startPlaying();
     this.$('#start').show();
+    // this.$('#modal').hide();
   },
 
   startPlaying: function(e){
@@ -72,7 +78,7 @@ var ApplicationView = Backbone.View.extend({
 
   closeModal: function(e){
     this.$('#modal').hide();
-    this.$('#start').hide();
+    // this.$('#start').hide();
   }
 });
 
