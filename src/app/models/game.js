@@ -11,12 +11,16 @@ var Game = Backbone.Model.extend({
     //   // ["6", "7", "8"]
     // ],
     // players: [],
-    outcome: null
+    // "id": null,
+    // "played_at": null,
+    // "outcome": null
   },
 
   url: 'http://quiet-dawn-33248.herokuapp.com/api/v1/games',
 // initialize(attributes, options) -- we've been calling attributes options
   initialize: function(attributes, options){
+    this.set('id', null);
+    this.set('played_at', null);
     this.set('board', [
       [null, null, null],
       [null, null, null],
@@ -25,6 +29,16 @@ var Game = Backbone.Model.extend({
 
     this.set('players', []);
     this.set('outcome', null);
+
+    if (attributes) {
+      console.log('attributes were passed');
+      console.log(attributes);
+      this.set('id', attributes.id);
+      this.set('played_at', attributes.played_at);
+      this.set('board', attributes.board);
+      this.set('players', attributes.players);
+      this.set('outcome', attributes.outcome);
+    }
     // instantiate 2 Player objects
     this.Player1 = new Player();
     this.Player2 = new Player();
@@ -36,6 +50,7 @@ var Game = Backbone.Model.extend({
     this.counter = 0;
     // this.outcome = null;
     // console.log(this.attributes);
+    return this;
   },
 
   toJSON: function(){
@@ -57,6 +72,8 @@ var Game = Backbone.Model.extend({
             attributes[key] = value.toJSON();
         }
     });
+    delete attributes.id;
+    delete attributes.played_at;
     return attributes;
   },
 

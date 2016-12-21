@@ -75,3 +75,7 @@ form {
   margin: 2%;
   /*background-color: lightblue;*/
 }
+
+.record {
+  border: 1px solid black;
+}

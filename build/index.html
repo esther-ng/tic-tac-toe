@@ -41,11 +41,27 @@
       </section>
     </div>
     <button type="button" name="button" id='start'>Play New Game</button>
+
+    <section id='game-history'>
+      <button type="button" name="button" id='btn-history'>See Game History</button>
+      <ul id='games-list'>
+
+      </ul>
+    </section>
     <!-- Underscore Templates -->
     <script type="text/template" id="tmpl-cell">
       <td class="cell">
         <%- mark %>
       </td>
+    </script>
+    <script type="text/template" id="tmpl-li">
+      <li class="record">
+        <h3>
+          <%- players[0] %> vs. <%- players[1] %>
+        </h3>
+        <p><%- played_at.toDateString() %> at <%- played_at.toLocaleTimeString() %>
+        <!-- <%- outcome %> -->
+      </li>
     </script>
 
     <script src="/app.bundle.js" charset="utf-8"></script>
