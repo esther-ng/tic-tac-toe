@@ -1,4 +1,5 @@
 import Backbone from 'backbone';
+import _ from 'underscore';
 import Player from './player';
 
 var Game = Backbone.Model.extend({
@@ -11,6 +12,8 @@ var Game = Backbone.Model.extend({
     // players: [],
     outcome: null
   },
+
+  url: '',
 // initialize(attributes, options) -- we've been calling attributes options
   initialize: function(attributes, options){
     this.set('board', [
@@ -31,7 +34,21 @@ var Game = Backbone.Model.extend({
     this.turn = players[randomIndex];
     this.counter = 0;
     // this.outcome = null;
+    // console.log(this.attributes);
   },
+
+  // toJSON: function(){
+  //   var attributes = _.clone(this.attributes);
+  //   // go through each attribute
+  //   $.each(attributes, function(key, value) {
+  //       // check if we have some nested object with a toJSON method
+  //       if (value.toJSON).isFunction()) {
+  //           // execute toJSON and overwrite the value in attributes
+  //           attributes[key] = value.toJSON();
+  //       }
+  //   });
+  //   return attributes;
+  // },
 
   assignMark: function(){
     if (this.Player1.mark === "X") {

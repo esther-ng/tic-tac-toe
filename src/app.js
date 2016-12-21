@@ -1,12 +1,14 @@
 import $ from 'jquery';
 
-// import Player from 'app/models/game';
+import Application from 'app/models/application';
 import ApplicationView from 'app/views/application_view';
 
 $(document).ready(function() {
+  var gamesList = new Application();
+  gamesList.fetch();
   var applicationView = new ApplicationView ({
     el: 'body',
-    // model: game
+    model: game
   });
   applicationView.render();
 });
