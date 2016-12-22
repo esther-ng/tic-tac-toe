@@ -27,15 +27,12 @@ var BoardView = Backbone.View.extend({
     this.board = options.board.reduce(function(a,b){
       return a.concat(b);
     }, []);
-    // console.log(options);
     this.cellViewList[options.cellNum].render(this.board[options.cellNum]);
 
     return this;
   },
 
   playMark: function(coordies){
-    // e.stopPropagation();
-    // console.log('board view play mark' + coordies);
     this.trigger('play', coordies);
   }
 
