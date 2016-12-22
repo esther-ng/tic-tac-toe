@@ -9,16 +9,18 @@ var GameView = Backbone.View.extend({
       board: this.model.get('board'),
       el: this.$('#board'),
     });
+    this.$('#status').empty();
     this.listenTo(this.boardView, 'play', this.playIt);
     this.turn = this.model.turn.mark;
-    this.listenTo(this.model, 'change:board', console.log('board has changed!'));
-    this.listenTo(this.model, 'change', console.log('Game Over'));
+    // this.listenTo(this.model, 'change:board', console.log('board has changed!'));
+    // this.listenTo(this.model, 'sync', console.log('Synced'));
+    // this.listenTo(this.model, 'request', console.log('requested'));
     // return this;
   },
 
   render: function(coordinates) {
     // this.delegateEvents();
-    this.$('#turn').text('Turn ' + this.model.turn.mark);
+    this.$('#status').text('Turn ' + this.model.turn.mark);
     this.boardView.render({
       board: this.model.get('board'),
       cellNum: coordinates
@@ -45,6 +47,7 @@ var GameView = Backbone.View.extend({
       this.render(e);
     } else {
       this.render(e);
+      this.$('#status').html("<p>Game Over</p><p> Winner is " + this.model.get('outcome')+ "</p>");
       this.model.trigger('gameover',  this.model.get('outcome'));
     }
     // console.log(this.model.get('board'));
