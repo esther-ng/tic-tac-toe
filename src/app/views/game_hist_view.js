@@ -17,14 +17,20 @@ var GameHistView = Backbone.View.extend({
     return this;
   },
   events: {
-    'click': 'triggerLoad'
+    // 'click': 'triggerLoad',
+    'click #delete': 'triggerDelete'
   },
 
-  triggerLoad: function(e){
-    // e.stopPropagation();
-    // console.log('clicked on cell view' + this.klass);
-    // this.trigger('coordinates', this.klass);
+  triggerDelete: function(e){
+    this.trigger('deleteG', this.model);
+    // console.log(this.model.get('id'
+    // ));
   }
+  // triggerLoad: function(e){
+  //   // e.stopPropagation();
+  //   // console.log('clicked on cell view' + this.klass);
+  //   // this.trigger('coordinates', this.klass);
+  // }
 });
 
 export default GameHistView;

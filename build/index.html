@@ -4,6 +4,7 @@
     <title>Tic-Tac-Toe</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/app.css">
+    <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy|Rammetto+One|Sigmar+One" rel="stylesheet">
   </head>
   <body>
     <h1>TIC-TAC-TOE</h1>
@@ -15,6 +16,7 @@
             Player X
             <input type="text" name="player-x">
           </label>
+          <br>
           <label>
             Player O
             <input type="text" name="player-o">
@@ -36,14 +38,13 @@
           <td></td><td></td><td></td>
         </tr>
       </table>
-      <section id="status">
-
-      </section>
+      <section id="status"></section>
+      <section id="players"></section>
     </div>
     <button type="button" name="button" id='start'>Play New Game</button>
 
     <section id='game-history'>
-      <button type="button" name="button" id='btn-history'>See Game History</button>
+      <!-- <button type="button" name="button" id='btn-history'>See Game History</button> -->
       <ul id='games-list'>
 
       </ul>
@@ -61,6 +62,8 @@
         </h3>
         <p><%- played_at.toDateString() %> at <%- played_at.toLocaleTimeString() %>
         <!-- <%- outcome %> -->
+        <br>
+        <button id='delete'>Delete</button>
       </li>
     </script>
 

@@ -20,7 +20,7 @@ var GameView = Backbone.View.extend({
 
   render: function(coordinates) {
     // this.delegateEvents();
-    this.$('#status').text('Turn ' + this.model.turn.mark);
+    this.$('#status').text('GO ' + this.model.turn.mark);
     this.boardView.render({
       board: this.model.get('board'),
       cellNum: coordinates

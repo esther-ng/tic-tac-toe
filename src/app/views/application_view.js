@@ -7,16 +7,30 @@ import GameHistView from 'app/views/game_hist_view';
 
 var ApplicationView = Backbone.View.extend({
   initialize: function(){
-
-    // this.listenTo(this.gameView.model, 'gameover', this.showModal);
+    this.model.fetch();
+    this.listenTo(this.model, 'update', this.render);
+    // this.listenTo()
     // this.listenTo(this, '')
     // this.gameHistory = [];
     // this.listenTo(this.model, 'change', )
+    // return this;
   },
 
   render: function(){
-    this.delegateEvents();
+    // this.delegateEvents();
+    this.$('#games-list').empty();
+    // this.gameHistory = [];
+    this.showHistory(this.model);
+    // this.model.fetch({reset: true, success: this.showHistory});
+    // this.model.forEach(function(g){
+    //   this.fillHistory(g);
+    // }, this);
+    // this.gameHistory.forEach(function(gv){
+    //   gv.render();
+    //   this.$('#games-list').append(gv.$el);
+    // }, this);
     // console.log('list of games' + JSON.stringify(this.model) + this.model[0]);
+    // this.showHistory(this);
     return this;
   },
 
@@ -41,6 +55,7 @@ var ApplicationView = Backbone.View.extend({
     // console.log(this.game.get('players'));
     $('#status').text(this.game.turn.mark + ' goes first!');
     this.$('#modal').hide();
+    this.$('#players').html("Player X: " + this.game.Player1.name + "<br>vs<br>" + "Player O: " + this.game.Player2.name);
     // this.$('#games-list').hide();
   },
 
@@ -49,7 +64,8 @@ var ApplicationView = Backbone.View.extend({
     $('#modal-text').text('the winner is ' + outcome);
     modal.show();
     this.$('#btn-save').hide();
-    this.showHistory();
+    this.model.fetch();
+    // this.showHistory();
     // console.log('this is the winner in appview' + outcome);
   },
 
@@ -57,8 +73,9 @@ var ApplicationView = Backbone.View.extend({
     'click #start': 'startPlaying',
     'click #close': 'closeModal',
     'click #play-again': 'resetPlay',
-    'click #btn-save': 'getPlayerNames',
-    'click #btn-history': 'showHistory'
+    'click #btn-save': 'getPlayerNames'
+    // 'click #delete': 'deleteGame'
+    // 'click #btn-history': 'showHistory'
   },
 
   resetPlay: function(e){
@@ -82,13 +99,14 @@ var ApplicationView = Backbone.View.extend({
   },
 
   showHistory: function(e){
-    this.$('#games-list').empty();
+    // $('#games-list').empty();
+    // console.log(this.model);
     this.gameHistory = [];
-    this.model.fetch({reset: true});
+    // this.model.fetch({reset: true});
     this.model.forEach(function(g){
       this.fillHistory(g);
     }, this);
-    this.gameHistory.forEach(function(gv){
+    this.gameHistory.reverse().forEach(function(gv){
       gv.render();
       this.$('#games-list').append(gv.$el);
     }, this);
@@ -99,7 +117,12 @@ var ApplicationView = Backbone.View.extend({
     var card = new GameHistView({
       model: game
     });
+    this.listenTo(card, 'deleteG', this.deleteGame);
     this.gameHistory.push(card);
+  },
+
+  deleteGame: function(e){
+    e.destroy({success: this.render});
   }
 });
 

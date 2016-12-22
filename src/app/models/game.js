@@ -5,7 +5,7 @@ import $ from 'jquery';
 
 var Game = Backbone.Model.extend({
 
-  url: 'http://quiet-dawn-33248.herokuapp.com/api/v1/games',
+  urlRoot: 'http://quiet-dawn-33248.herokuapp.com/api/v1/games',
 // initialize(attributes, options) -- we've been calling attributes options
   initialize: function(attributes, options){
     this.set('id', null);

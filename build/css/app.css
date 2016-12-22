@@ -6,21 +6,25 @@
 
 body {
   margin-top: 5%;
+  /*font-family: 'Luckiest Guy', san-serif;*/
+  font-family: 'Rammetto One', sans-serif;
+  /*font-family: 'Sigmar One', sans-serif;;*/
 }
 
 button {
-  padding: 2%;
-  margin: 5%;
+  padding: 5px;
+  margin: 10px;
 }
-
+/*
 button#close {
   background-color: white;
   color: grey;
-}
+}*/
 
 table {
   border-collapse: collapse;
   border-spacing: 0;
+  /*font-family: 'Rammetto One', sans-serif;*/
 }
 
 #board {
@@ -33,7 +37,7 @@ table {
   width: 80px;
   height: 80px;
   border: 1px solid #1c1c1c;
-  font-family: Helvetica;
+  /*font-family: Helvetica;*/
   font-size: 30px;
   /*text-align: center;*/
 }
@@ -51,9 +55,10 @@ table {
   position: absolute;
   bottom: 10%;
   left: 25%;
-  height: 30%;
+  height: auto;
   width: 50%;
   padding: 20px;
+  /*overflow-y: visible;*/
   /*text-align: center;*/
 }
 
@@ -61,14 +66,19 @@ table {
   margin: 0;
 }
 
-form {
+#status {
   margin: 10px;
 }
 
-#btn-save {
+form {
+  margin: 10px;
+  text-align: left;
+}
+
+/*#btn-save {
   background-color: grey;
   padding: 2%;
-}
+}*/
 
 #turn {
   padding: 2%;
